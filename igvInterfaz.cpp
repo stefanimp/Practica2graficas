@@ -95,6 +95,7 @@ void igvInterfaz::keyboardFunc(unsigned char key, int x, int y)
 {
     switch (key)
     {
+
     case 'x': // Apartado A: rotar X positivo
         _instancia->escena.incrX();
         break;
@@ -124,6 +125,18 @@ void igvInterfaz::keyboardFunc(unsigned char key, int x, int y)
         break;
     case 'G':
         _instancia->escena.getMalla()->cambiarvis();
+        break;
+    case 'c':
+        _instancia->activar_movimiento();
+        break;
+    case 'C':
+        _instancia->activar_movimiento();
+        break;
+    case '-':
+        _instancia->camara.zoom(-10);
+        break;
+    case '+':
+        _instancia->camara.zoom(10);
         break;
 
     case 'e': // activa/desactiva la visualizacion de los ejes
@@ -179,9 +192,10 @@ void igvInterfaz::displayFunc()
  */
 void igvInterfaz::inicializa_callbacks()
 {
-    glutKeyboardFunc(keyboardFunc);
-    glutReshapeFunc(reshapeFunc);
-    glutDisplayFunc(displayFunc);
+    glutKeyboardFunc ( keyboardFunc );
+    glutSpecialFunc(specialFunc);
+    glutReshapeFunc ( reshapeFunc );
+    glutDisplayFunc ( displayFunc );
 }
 
 /**
@@ -222,4 +236,44 @@ void igvInterfaz::set_ancho_ventana(int _ancho_ventana)
 void igvInterfaz::set_alto_ventana(int _alto_ventana)
 {
     alto_ventana = _alto_ventana;
+}
+
+
+void igvInterfaz::specialFunc(int key, int x, int y) {
+    if (_instancia->activacion_camara==0) {
+        switch (key) {
+            case GLUT_KEY_RIGHT:
+                _instancia->escena.incrX();
+                break;
+            case GLUT_KEY_LEFT:
+                _instancia->escena.incrY();
+                break;
+            case GLUT_KEY_UP:
+                _instancia->escena.incrZ();
+                break;
+            case GLUT_KEY_DOWN:
+                _instancia->escena.decrX();
+                break;
+        }
+
+    }
+    else {
+        switch (key) {
+            case GLUT_KEY_RIGHT:
+                _instancia->camara.movimento_orbita(5,0);
+                break;
+            case GLUT_KEY_LEFT:
+                _instancia->camara.movimento_orbita(-5,0);
+                break;
+            case GLUT_KEY_UP:
+                _instancia->camara.movimiento_cabeceo(2);
+                break;
+            case GLUT_KEY_DOWN:
+                _instancia->camara.movimiento_cabeceo(-2);
+                break;
+
+        }
+
+    }
+    glutPostRedisplay();
 }
