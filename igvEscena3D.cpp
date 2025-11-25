@@ -15,8 +15,11 @@
 /**
  * Constructor por defecto
  */
-igvEscena3D::igvEscena3D()
-{
+igvEscena3D::igvEscena3D(){
+
+    anguloTorre = 0.0;
+    anguloBrazo = 0.0;
+    anguloAntebrazo = 0.0;
     rotX = 0.0;
     rotY = 0.0;
     rotZ = 0.0;
@@ -189,6 +192,7 @@ igvMallaTriangulos* igvEscena3D::cargarOBJ(const std::string& filename) {
 }
 
 
+
     // GRUA
     // Método auxiliar para pintar una sola rueda
     void igvEscena3D::pintar_rueda() {
@@ -230,36 +234,73 @@ igvMallaTriangulos* igvEscena3D::cargarOBJ(const std::string& filename) {
      glutSolidCube(1.0);
      glPopMatrix();
  }
+ void igvEscena3D::pintar_torre() {
+     glPushMatrix();
+     GLfloat color[] = {0.8, 0.6, 0.0, 1.0}; // Amarillo
+     glMaterialfv(GL_FRONT, GL_EMISSION, color);
+     // Una torre cilíndrica o cúbica
+     glScalef(0.5, 1.0, 0.5);
+     glutSolidCube(1.0);
+     glPopMatrix();
+ }
+
+ void igvEscena3D::pintar_brazo() {
+     glPushMatrix();
+     GLfloat color[] = {0.8, 0.0, 0.0, 1.0}; // Rojo para distinguir
+     glMaterialfv(GL_FRONT, GL_EMISSION, color);
+
+     // Desplazamos para que el eje de rotación esté en el extremo, no en el centro
+     glTranslatef(0.0, 1.0, 0.0);
+     glScalef(0.4, 2.0, 0.4);
+     glutSolidCube(1.0);
+     glPopMatrix();
+ }
+
+ void igvEscena3D::pintar_antebrazo() {
+     glPushMatrix();
+     GLfloat color[] = {0.0, 0.8, 0.8, 1.0}; // Cian
+     glMaterialfv(GL_FRONT, GL_EMISSION, color);
+
+     glTranslatef(0.0, 0.75, 0.0);
+     glScalef(0.3, 1.5, 0.3);
+     glutSolidCube(1.0);
+     glPopMatrix();
+ }
 
 // Método principal que ensambla la grúa
  void igvEscena3D::pintar_grua() {
-     // 1. Pintamos la Base (El nodo padre de esta sub-jerarquía)
+     // 1. NIVEL 1: La Base y Ruedas (fijas en el suelo)
      pintar_base();
 
-     // 2. Pintamos las 4 ruedas (Hijos de la base)
-     // Nota: Usamos push/pop para que cada rueda sea independiente pero relativa a la grúa
+     // Ruedas (Hijas de la base)
+     glPushMatrix(); glTranslatef(-0.8, -0.25, 0.5); pintar_rueda(); glPopMatrix();
+     glPushMatrix(); glTranslatef(-0.8, -0.25, -0.7); pintar_rueda(); glPopMatrix();
+     glPushMatrix(); glTranslatef(0.8, -0.25, 0.5); pintar_rueda(); glPopMatrix();
+     glPushMatrix(); glTranslatef(0.8, -0.25, -0.7); pintar_rueda(); glPopMatrix();
 
-     // Rueda Trasera Derecha
-     glPushMatrix();
-     glTranslatef(-0.8, -0.25, 0.5); // Posición relativa al centro de la base
-     pintar_rueda();
-     glPopMatrix();
+     // --- COMIENZO DE LA PARTE ARTICULADA ---
 
-     // Rueda Trasera Izquierda
      glPushMatrix();
-     glTranslatef(-0.8, -0.25, -0.7); // Z negativo para el otro lado (ajustado por el ancho de rueda)
-     pintar_rueda();
-     glPopMatrix();
+     // Subimos a la parte superior de la base
+     glTranslatef(0.0, 0.5, 0.0); // 0.5 es la mitad de la altura de la base (aprox)
 
-     // Rueda Delantera Derecha
-     glPushMatrix();
-     glTranslatef(0.8, -0.25, 0.5);
-     pintar_rueda();
-     glPopMatrix();
+     // 2. NIVEL 2: La Torre (Grado de Libertad 1: Rotación Y)
+     glRotatef(anguloTorre, 0, 1, 0);
+     pintar_torre();
 
-     // Rueda Delantera Izquierda
-     glPushMatrix();
-     glTranslatef(0.8, -0.25, -0.7);
-     pintar_rueda();
-     glPopMatrix();
+     // Ahora nos movemos al topo de la torre para poner el brazo
+     glTranslatef(0.0, 0.5, 0.0);
+
+     // 3. NIVEL 3: El Brazo (Grado de Libertad 2: Rotación Z - Elevación)
+     glRotatef(anguloBrazo, 0, 0, 1);
+     pintar_brazo();
+
+     // Nos movemos al final del brazo (longitud del brazo es aprox 2.0, ver escalado en pintar_brazo)
+     glTranslatef(0.0, 2.0, 0.0);
+
+     // 4. NIVEL 4: El Antebrazo (Grado de Libertad 3: Rotación Z)
+     glRotatef(anguloAntebrazo, 0, 0, 1);
+     pintar_antebrazo();
+
+     glPopMatrix(); // Fin de la parte articulada
  }

@@ -70,15 +70,24 @@ public:
     void decrZ() {
         rotZ -= 10;
     }
+    void cambiarAnguloTorre(double inc) { anguloTorre += inc; }
+    void cambiarAnguloBrazo(double inc) { anguloBrazo += inc; }
+    void cambiarAnguloAntebrazo(double inc) { anguloAntebrazo += inc; }
 
 
 
 private:
     void pintar_ejes();
     igvMallaTriangulos* cargarOBJ(const std::string& filename);
+    double anguloTorre;     // Rotación de la cabina
+    double anguloBrazo;     // Elevación del brazo
+    double anguloAntebrazo; // Elevación del antebrazo
     void pintar_rueda();
     void pintar_base();
     void pintar_grua();
+    void pintar_torre();
+    void pintar_brazo();
+    void pintar_antebrazo();
 };
 
 #endif   // __IGVESCENA3D

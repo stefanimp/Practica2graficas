@@ -129,6 +129,27 @@ void igvInterfaz::keyboardFunc(unsigned char key, int x, int y)
     case 'e': // activa/desactiva la visualizacion de los ejes
          _instancia->escena.set_ejes(_instancia->escena.get_ejes() ? false : true);
         break;
+            // CONTROLES DE LA GRÚA
+        case 't': // Torre derecha
+            _instancia->escena.cambiarAnguloTorre(5);
+            break;
+        case 'T': // Torre izquierda
+            _instancia->escena.cambiarAnguloTorre(-5);
+            break;
+
+        case 'b': // Brazo subir
+            _instancia->escena.cambiarAnguloBrazo(5);
+            break;
+        case 'B': // Brazo bajar
+            _instancia->escena.cambiarAnguloBrazo(-5);
+            break;
+
+        case 'a': // Antebrazo subir
+            _instancia->escena.cambiarAnguloAntebrazo(5);
+            break;
+        case 'A': // Antebrazo bajar
+            _instancia->escena.cambiarAnguloAntebrazo(-5);
+            break;
     case 27: // tecla de escape para SALIR
         exit(1);
         break;
