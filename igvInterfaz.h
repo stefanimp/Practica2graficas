@@ -17,55 +17,62 @@
 #include "igvCamara.h"
 
 /**
- * Los objetos de esta clase encapsulan la interfaz y el estado de la aplicación
+ * Los objetos de esta clase encapsulan la interfaz y el estado de la aplicaciï¿½n
  */
 class igvInterfaz
 {  private:
       // Atributos
-      int ancho_ventana = 0; ///< Ancho de la ventana de visualización
-      int alto_ventana = 0;  ///< Alto de la ventana de visualización
+      int ancho_ventana = 0; ///< Ancho de la ventana de visualizaciï¿½n
+      int alto_ventana = 0;  ///< Alto de la ventana de visualizaciï¿½n
 
       igvEscena3D escena; ///< Escena que se visualiza en la ventana definida por igvInterfaz
-      igvCamara camara; ///< Cámara que se utiliza para visualizar la escena
-
-      // Aplicación del patrón de diseño Singleton
-      static igvInterfaz* _instancia; ///< Dirección de memoria del objeto único de la clase
+      igvCamara camara; ///< Cï¿½mara que se utiliza para visualizar la escena
+      int activacion_camara = 0;
+      // Aplicaciï¿½n del patrï¿½n de diseï¿½o Singleton
+      static igvInterfaz* _instancia; ///< Direcciï¿½n de memoria del objeto ï¿½nico de la clase
       /// Constructor por defecto
       igvInterfaz () = default;
 
 
    public:
-      // Aplicación del patrón de diseño Singleton
+      // Aplicaciï¿½n del patrï¿½n de diseï¿½o Singleton
       static igvInterfaz& getInstancia ();
       // Constructores por defecto y destructor
 
       /// Destructor
       ~igvInterfaz () = default;
 
-      // Métodos estáticos
+      // Mï¿½todos estï¿½ticos
       // callbacks de eventos
       // callbacks de eventos
-      static void keyboardFunc ( unsigned char key, int x, int y ); // método para control de eventos del teclado
-      static void reshapeFunc ( int w, int h ); // método que define la camara de vision y el viewport
-      // se llama automáticamente cuando se cambia el tamaño de la ventana
-      static void displayFunc (); // método para visualizar la escena
-
+      static void keyboardFunc ( unsigned char key, int x, int y ); // mï¿½todo para control de eventos del teclado
+      static void reshapeFunc ( int w, int h ); // mï¿½todo que define la camara de vision y el viewport
+      // se llama automï¿½ticamente cuando se cambia el tamaï¿½o de la ventana
+      static void displayFunc (); // mï¿½todo para visualizar la escena
+    void activar_movimiento() {
+        if (activacion_camara==0) {
+            activacion_camara=1;
+        }
+        else {
+            activacion_camara=0;;
+        }
+    };
 
       // Metodos
       // crea el mundo que se visualiza en la ventana
       void crear_mundo ();
 
-      // inicializa todos los parámetros para crear una ventana de visualización
-      void configura_entorno ( int argc, char **argv // parámetros del main
-                             , int _ancho_ventana, int _alto_ventana // ancho y alto de la ventana de visualización
-                             , int _pos_X, int _pos_Y // posición inicial de la ventana de visualización
-                             , std::string _titulo // título de la ventana de visualización
+      // inicializa todos los parï¿½metros para crear una ventana de visualizaciï¿½n
+      void configura_entorno ( int argc, char **argv // parï¿½metros del main
+                             , int _ancho_ventana, int _alto_ventana // ancho y alto de la ventana de visualizaciï¿½n
+                             , int _pos_X, int _pos_Y // posiciï¿½n inicial de la ventana de visualizaciï¿½n
+                             , std::string _titulo // tï¿½tulo de la ventana de visualizaciï¿½n
                              );
       void inicializa_callbacks (); // inicializa todos los callbacks
 
       void inicia_bucle_visualizacion (); // visualiza la escena y espera a eventos sobre la interfaz
 
-      // métodos get_ y set_ de acceso a los atributos
+      // mï¿½todos get_ y set_ de acceso a los atributos
       int get_ancho_ventana ();
 
       int get_alto_ventana ();
@@ -73,6 +80,7 @@ class igvInterfaz
       void set_ancho_ventana ( int _ancho_ventana );
 
       void set_alto_ventana ( int _alto_ventana );
+    static void specialFunc(int key, int x, int y);
 };
 
 #endif   // __IGVINTERFAZ
