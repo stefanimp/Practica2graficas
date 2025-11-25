@@ -79,6 +79,7 @@ private:
     void pintar_rueda();
     void pintar_base();
     void pintar_grua();
+    void pintar_malla_de_triangulos();
 };
 
 #endif   // __IGVESCENA3D

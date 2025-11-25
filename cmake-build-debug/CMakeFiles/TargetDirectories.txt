@@ -1,3 +1,3 @@
-C:/Users/stefan/Desktop/Estudios/Uni/Ing_Informatica/3o/2025_2026/1_Cuatri/IGV/Practicas/Practica_2/pr3a-master/cmake-build-debug/CMakeFiles/pr3a.dir
-C:/Users/stefan/Desktop/Estudios/Uni/Ing_Informatica/3o/2025_2026/1_Cuatri/IGV/Practicas/Practica_2/pr3a-master/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/stefan/Desktop/Estudios/Uni/Ing_Informatica/3o/2025_2026/1_Cuatri/IGV/Practicas/Practica_2/pr3a-master/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/michaek/Documentos/25-26/Estructuras de datos/Practica2graficas/cmake-build-debug/CMakeFiles/pr3a.dir
+/home/michaek/Documentos/25-26/Estructuras de datos/Practica2graficas/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/michaek/Documentos/25-26/Estructuras de datos/Practica2graficas/cmake-build-debug/CMakeFiles/rebuild_cache.dir

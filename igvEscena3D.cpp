@@ -24,7 +24,7 @@ igvEscena3D::igvEscena3D()
     malla = new igvCilindro(1,1,40,5);
 
     try {
-        modeloImportado = cargarOBJ("../airplane_triangles.obj");
+        modeloImportado = cargarOBJ("../airplane.obj");
         std::cout << "Modelo cargado correctamente." << std::endl;
 
     } catch (const std::exception& e) {
@@ -98,6 +98,7 @@ void igvEscena3D::pintar_ejes()
 
      // --- AQUÍ DIBUJAMOS TU GRÚA ---
      pintar_grua();
+
 
      glPopMatrix(); // Restaurar matriz
  }
@@ -263,3 +264,19 @@ igvMallaTriangulos* igvEscena3D::cargarOBJ(const std::string& filename) {
      pintar_rueda();
      glPopMatrix();
  }
+void igvEscena3D:: pintar_malla_de_triangulos() {
+
+    rotX = 0.0;
+    rotY = 0.0;
+    rotZ = 0.0;
+
+    malla = new igvCilindro(1,1,40,5);
+
+    try {
+        modeloImportado = cargarOBJ("../airplane.obj");
+        std::cout << "Modelo cargado correctamente." << std::endl;
+
+    } catch (const std::exception& e) {
+        std::cerr << "Error al cargar el archivo: " << e.what() << std::endl;
+    }
+}
