@@ -138,7 +138,10 @@ void igvInterfaz::keyboardFunc(unsigned char key, int x, int y)
     case 'a': case 'A': // Activar/Desactivar animación del Tren
         _instancia->escena.toggleAnimacionModelo();
         break;
-
+    case 's':
+    case 'S':
+        _instancia->escena.toggleSombreado();
+        break;
     case 'h': case 'H': // Activar/Desactivar animación Cámara
         _instancia->escena.toggleAnimacionCamara();
             break;

@@ -94,7 +94,11 @@ void igvEscena3D::visualizar(int escena)
 {
     GLfloat color_malla[] = {0, 0.25, 0};
     GLfloat luz0[4] = {5, 5, 5, 1};
-
+    if (sombreadoSuave) {
+        glShadeModel(GL_SMOOTH); // Interpolatorio (Gouraud)
+    } else {
+        glShadeModel(GL_FLAT);   // Plano (Faceteado)
+    }
     glLightfv(GL_LIGHT0, GL_POSITION, luz0);
     glEnable(GL_LIGHT0);
 
@@ -576,4 +580,10 @@ void igvEscena3D::reset() {
     soltando = false;
     alturaCaida = 0.0f;
     alturaCarga = 0.0f;
+}
+
+
+void igvEscena3D::toggleSombreado() {
+    sombreadoSuave = !sombreadoSuave;
+    std::cout << "Sombreado: " << (sombreadoSuave ? "Suave (Gouraud)" : "Plano (Flat)") << std::endl;
 }

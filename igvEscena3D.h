@@ -41,9 +41,14 @@ private:
     bool animacionModelo; // ¿Se mueve el tren?
     bool animacionCamara; // ¿Gira la cámara sola?
     float posTrenZ;
+protected:
+    bool sombreadoSuave; // Variable para controlar el estado
+
+
 
 
 public:
+    void toggleSombreado();
     int cajaSeleccionada = -1;
     double posicionCarro = 2.0;  // Desplazamiento del carro (Grado 2)
     double longitudCable = 1.0;
