@@ -551,3 +551,29 @@ void igvEscena3D::paso_simulacion() {
         }
     }
 }
+
+
+void igvEscena3D::reset() {
+    // 1. Reiniciar variables de la grúa
+    anguloTorre = 0.0f;
+    // Asumiendo que tienes una variable para esto (basado en tus getters/setters)
+    // posicionCarro = 0.0f;
+    longitudCable = 1.0f; // O el valor inicial que tuviera (ej. 4.0)
+
+    // 2. Deseleccionar cajas
+    cajaSeleccionada = -1;
+
+    // 3. Reiniciar posición de las cajas (a 0 o donde deban empezar)
+    caja_.set_posx(0); caja_.set_posz(0); caja_.set_posy(0);
+    caja1.set_posx(0); caja1.set_posz(0); caja1.set_posy(0);
+    caja2.set_posx(0); caja2.set_posz(0); caja2.set_posy(0);
+
+    // 4. Reiniciar variables de animación del Tren (Escena A)
+    posTrenZ = 0.0f;
+    bajandoGancho = true;
+    subiendoGancho = false;
+    cargado = false;
+    soltando = false;
+    alturaCaida = 0.0f;
+    alturaCarga = 0.0f;
+}

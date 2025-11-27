@@ -71,7 +71,9 @@ float igvCaja::posz1() { return posz; }
 
 void igvCaja::set_posx(float x) { posx = x; }
 void igvCaja::set_posz(float z) { posz = z; }
-
+void igvCaja::set_posy(float y) {
+    posy = y;
+}
 void igvCaja::mover(float dx,float dy, float dz)
 {
     posx += dx;

@@ -21,7 +21,6 @@ add_executable(${PROJECT_NAME}
         pr2a.cpp
         caja.cpp
         caja.h
-        pr2a.cpp
         pr2a.cpp)
 
 

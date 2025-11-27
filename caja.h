@@ -43,7 +43,7 @@ public:
     float posz1();             // Retorna posición Z
     void set_posx(float x);    // Asigna posición X
     void set_posz(float z);
-
+    void set_posy(float y);
     bool valor1() const {
         return valor;
     }

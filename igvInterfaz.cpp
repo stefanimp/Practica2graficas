@@ -366,14 +366,14 @@ void igvInterfaz::motionFunc(GLint x, GLint y) {
 
             if (_instancia->mover_angulo_torre_) {
                 _instancia->escena.anguloTorre = -10;
-                // IMPORTANTE: Ponemos esto DENTRO del if para que solo pase una vez
-                _instancia->escena.cambiarPosicionCarro(2.5);
-                _instancia->escena.cambiarLongitudCable(2);
+                _instancia->escena.caja_.mover(1,5,0);
+                _instancia->escena.cambiarPosicionCarro(3.4);
+                _instancia->escena.cambiarLongitudCable(2.5);
                 _instancia->mover_angulo_torre_ = false;
             }
 
             // 2. Actualizar el ángulo con el ratón (FALTABA ESTO)
-            _instancia->escena.anguloTorre += dx * 0.2f;
+            _instancia->escena.anguloTorre += dx * 0.15f;
 
             // 3. Cálculos manuales
             float radianes = _instancia->escena.anguloTorre * (M_PI / 180.0f);
@@ -382,7 +382,7 @@ void igvInterfaz::motionFunc(GLint x, GLint y) {
             // Si te da error usa: _instancia->escena.posicionCarro
             float radio = _instancia->escena.posicion_carro();
 
-            float radioAmpliado = radio * 2.5f;
+            float radioAmpliado = radio*4 ;
             float posxCalculada = radioAmpliado * cos(radianes);
             float poszCalculada = -radioAmpliado * sin(radianes);
 
@@ -394,18 +394,19 @@ void igvInterfaz::motionFunc(GLint x, GLint y) {
 
             // 1. Inicialización
             if (_instancia->mover_angulo_torre1) {
+                _instancia->escena.caja1.mover(-1,5,0);
                 _instancia->escena.anguloTorre = -45;
-                _instancia->escena.cambiarPosicionCarro(3);
+                _instancia->escena.cambiarPosicionCarro(4);
                 _instancia->escena.cambiarLongitudCable(2);
                 _instancia->mover_angulo_torre1 = false;
             }
 
 
-            _instancia->escena.anguloTorre += dx * 0.2f;
+            _instancia->escena.anguloTorre += dx * 0.15f;
 
             float radianes = _instancia->escena.anguloTorre * (M_PI / 180.0f);
             float radio = _instancia->escena.posicion_carro();
-            float radioAmpliado = radio * 2.5f;
+            float radioAmpliado = radio*4 ;
             float posxCalculada = radioAmpliado * cos(radianes);
             float poszCalculada = -radioAmpliado * sin(radianes);
 
@@ -416,24 +417,24 @@ void igvInterfaz::motionFunc(GLint x, GLint y) {
 
 
             if (_instancia->mover_angulo_torre2) {
-                _instancia->escena.anguloTorre = -60;
-
-                _instancia->escena.cambiarPosicionCarro(2);
+                _instancia->escena.anguloTorre = -65;
+                _instancia->escena.caja2.mover(0,5,-10);
+                _instancia->escena.cambiarPosicionCarro(0.5);
                 _instancia->escena.cambiarLongitudCable(3);
                 _instancia->mover_angulo_torre2 = false;
             }
 
 
-            _instancia->escena.anguloTorre += dx * 0.2f;
+            _instancia->escena.anguloTorre += dx * 0.15f;
 
             float radianes = _instancia->escena.anguloTorre * (M_PI / 180.0f);
             float radio = _instancia->escena.posicion_carro();
-            float radioAmpliado = radio * 2.5f;
+            float radioAmpliado = radio*4 ;
             float posxCalculada = radioAmpliado * cos(radianes);
             float poszCalculada = -radioAmpliado * sin(radianes);
 
-            _instancia->escena.caja2.set_posx(posxCalculada);
-            _instancia->escena.caja2.set_posz(poszCalculada);
+            _instancia->escena.caja2.set_posx(posxCalculada-5);
+            _instancia->escena.caja2.set_posz(poszCalculada-4);
         }
 
     }
@@ -552,7 +553,12 @@ void igvInterfaz::idle() {
 }
 
 
-void igvInterfaz::menuHandle ( int value )
-{  _instancia->menuSelection = value;
-    glutPostRedisplay (); // renew the content of the window
+void igvInterfaz::menuHandle(int value)
+{
+    _instancia->menuSelection = value;
+    _instancia->escena.reset();
+    _instancia->mover_angulo_torre_ = true;
+    _instancia->mover_angulo_torre1 = true;
+    _instancia->mover_angulo_torre2 = true;
+    glutPostRedisplay();
 }

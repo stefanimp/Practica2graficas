@@ -29,8 +29,7 @@ private:
     igvMallaTriangulos* modeloImportado=nullptr;
 
   // Rotación de la pluma (Grado 1)
-    double posicionCarro = 2.0;  // Desplazamiento del carro (Grado 2)
-    double longitudCable = 1.0;  // Elevación del gancho (Grado 3)
+     // Elevación del gancho (Grado 3)
     bool seleccionando=false;
     void pintar_base();
     void pintar_torre_vertical(); // El mástil
@@ -46,7 +45,8 @@ private:
 
 public:
     int cajaSeleccionada = -1;
-
+    double posicionCarro = 2.0;  // Desplazamiento del carro (Grado 2)
+    double longitudCable = 1.0;
     const int EscenaA = 1;   ///< Identificador interno de la escena A
     const int EscenaB = 2;   ///< Identificador interno de la escena B
     const int EscenaC = 3;
@@ -141,6 +141,7 @@ public:
     void toggleAnimacionCamara();
     void paso_simulacion();
     bool getAnimacionCamara() { return animacionCamara; }
+    void reset();
 private:
     void pintar_ejes();
     igvMallaTriangulos* cargarOBJ(const std::string& filename);
