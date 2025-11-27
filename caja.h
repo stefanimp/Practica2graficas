@@ -18,7 +18,7 @@ class igvCaja
 {  private:
     float color[3] = { 0, 0, 0 };   ///< Color RGB de la caja (valores [0..1])
     GLubyte colorUByte[3] = { 0, 0, 0 };   ///< Color RGB de la caja (valores [0..255])
-    float posx; // Posición X
+    float posx;
     float posz; // Posición Z
     float posy;
 public:

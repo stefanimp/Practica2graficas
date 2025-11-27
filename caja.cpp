@@ -20,9 +20,7 @@ igvCaja::igvCaja(const igvCaja &orig)
 {
 }
 
-/**
- * Visualizar caja en OpenGL usando la posición actual y el color
- */
+
 void igvCaja::visualizar()
 {
     glPushMatrix();
