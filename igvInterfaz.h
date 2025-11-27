@@ -33,16 +33,12 @@ enum modoInterfaz
 class igvInterfaz
 {  private:
       // Atributos
-      int ancho_ventana = 0;
-      int alto_ventana = 0;
-      igvCaja caja;
-      igvEscena3D escena;
-      igvCamara camara;
-
-
-      static igvInterfaz* _instancia;
-
-      igvInterfaz () = default;
+    int ancho_ventana = 0;
+    int alto_ventana = 0;
+    igvCaja caja;
+    igvEscena3D escena;
+    igvCamara camara;
+    static igvInterfaz* _instancia;
     modoInterfaz modo = IGV_VISUALIZAR;
     int cursorX = 0 , cursorY = 0;
     int objeto_seleccionado = -1;
@@ -54,30 +50,26 @@ class igvInterfaz
     int cont1;
     bool partido=false;
     int menuSelection =1;
-
-   public:
+    igvInterfaz () = default;
+    public:
     bool mover_angulo_torre2=true;
     bool mover_angulo_torre1=true;
     bool mover_angulo_torre_=true;
-      static igvInterfaz& getInstancia ();
+    static igvInterfaz& getInstancia ();
 
     void create_menu();
 
       ~igvInterfaz () = default;
 
 
-      static void keyboardFunc ( unsigned char key, int x, int y );
-      static void reshapeFunc ( int w, int h );
-      static void displayFunc ();
+    static void keyboardFunc ( unsigned char key, int x, int y );
+    static void reshapeFunc ( int w, int h );
+    static void displayFunc ();
     static void mouseFunc ( GLint boton, GLint estado, GLint x, GLint y ); // control de pulsacion del raton
     static void motionFunc ( GLint x, GLint y ); // control del desplazamiento del raton con boton pulsado
     static void specialFunc(int key, int x, int y);
     static void idle() ;
-
     static void menuHandle ( int value );
-
-      // Metodos
-      // crea el mundo que se visualiza en la ventana
       void crear_mundo ();
 
       // inicializa todos los par�metros para crear una ventana de visualizaci�n

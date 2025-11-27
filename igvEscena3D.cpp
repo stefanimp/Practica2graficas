@@ -134,9 +134,8 @@ void igvEscena3D::visualizar(int escena)
         glPopMatrix();
     }
 
-    // ----------------------------------------------------
+
     // ESCENA B
-    // ----------------------------------------------------
     if (escena == EscenaB) {
         glPushMatrix();
         glScaled(0.5, 0.5, 0.5);
@@ -162,9 +161,7 @@ void igvEscena3D::visualizar(int escena)
         glPopMatrix();
     }
 
-    // ----------------------------------------------------
     // ESCENA C (MODIFICADA)
-    // ----------------------------------------------------
     if (escena == EscenaC) {
 
         // 1. Pintar Grúa (CON ILUMINACIÓN)
@@ -354,7 +351,7 @@ void igvEscena3D::pintar_carro() {
 }
 
 
-// Modificar pintar_gancho() - usa la misma caja_
+
 void igvEscena3D::pintar_gancho(int escena) {
     // Cable
     if (escena==EscenaA || escena==EscenaB) {
@@ -390,7 +387,7 @@ void igvEscena3D::pintar_gancho(int escena) {
 
     }
 }
-// --- ENSAMBLAJE DE LA JERARQUÍA ---
+
 void igvEscena3D::pintar_grua(int escena) {
     if (escena=EscenaA|| escena==EscenaB) {
         pintar_base();
@@ -426,8 +423,7 @@ void igvEscena3D::pintar_grua(int escena) {
 
         pintar_base();
 
-        // NIVEL 1.5: Torre Vertical
-        // Subimos 3 unidades (mitad de su altura 6) para que apoye en el suelo (y=0)
+
         glPushMatrix();
         glTranslatef(0, 3.0, 0);
         pintar_torre_vertical();
