@@ -12,7 +12,8 @@
  * @post Las coordenadas del nuevo punto/vector serán las que se pasan como parámetro
  */
 igvPunto3D::igvPunto3D ( const double &x, const double &y, const double &z ):
-   c{x,y,z } {}
+                                                           c{x,y,z }
+{ }
 
 /**
  * Constructor de copia
@@ -45,7 +46,7 @@ bool igvPunto3D::operator== ( const igvPunto3D &p )
 {  return ( ( fabs ( c[X] - p[X] ) < IGV_EPSILON )
             && ( fabs ( c[Y] - p[Y] ) < IGV_EPSILON )
             && ( fabs ( c[Z] - p[Z] ) < IGV_EPSILON )
-   );
+          );
 }
 
 /**
@@ -58,7 +59,7 @@ bool igvPunto3D::operator!= ( const igvPunto3D &p )
 {  return ( ( fabs ( c[X] - p[X] ) >= IGV_EPSILON )
             || ( fabs ( c[Y] - p[Y] ) >= IGV_EPSILON )
             || ( fabs ( c[Z] - p[Z] ) >= IGV_EPSILON )
-   );
+          );
 }
 
 /**
@@ -74,3 +75,4 @@ void igvPunto3D::set ( const double &x, const double &y, const double &z )
    c[Y] = y;
    c[Z] = z;
 }
+

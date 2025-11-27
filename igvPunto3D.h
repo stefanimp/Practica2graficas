@@ -79,3 +79,4 @@ inline double igvPunto3D::operator[] ( const unsigned char idx ) const
 {  return c[idx];
 }
 #endif   // __IGVPUNTO3D
+

@@ -112,6 +112,7 @@ class igvCamara
 
     void gira_eje_der(int mov);
 
+
 };
 
 #endif   // __IGVCAMARA
